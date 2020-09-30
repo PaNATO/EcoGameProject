@@ -9,8 +9,14 @@ public class PlayerLevelUpSystem : MonoBehaviour
 {
     public static PlayerLevelUpSystem PlayerLevelUpSystemInstance;
     [SerializeField]
-    Text PlayerLvl;
+    Text PlayerLvlText;
+    [SerializeField]
+    Text PlayerXpText;
+    [SerializeField]
+    Text RequiredXpText;
     public int PLvl;
+    public int PXp;
+    public int RXp;
 
     public void Awake()
     {
@@ -21,30 +27,64 @@ public class PlayerLevelUpSystem : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        PlayerLvl.text = "LVL: " +PLvl.ToString();
+        PlayerLvlText.text = "LVL: " + GamePlay.GamePlayInstance.Player.PlayerLvl.ToString();
+        PlayerXpText.text = "XP: " + PXp.ToString();
+        RequiredXpText.text = "XPR: " + RXp.ToString();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         
     }
+
     public void EarnXpOnClick()
     {
-        PLvl += 1;
-        PlayerLvl.text = "LVL: " + PLvl.ToString();
+        if (MapClickedDetection.mapClickedDetectionInstance.Detection() != "" && Input.GetMouseButtonDown(0))
+        {
+            PXp += 10;
+            PlayerXpText.text = "XP: " + PXp.ToString();
+        }
+    }
+    public void LvlUpCheck()
+    {
+        if (PXp >= RXp)
+        {
+            PXp -= RXp;
+            GamePlay.GamePlayInstance.Player.PlayerLvl += 1;
+            PlayerXpText.text = "XP: " + PXp.ToString();
+            PlayerLvlText.text = "LVL: " + GamePlay.GamePlayInstance.Player.PlayerLvl.ToString();
+        }
+    }
+    /*public void EarnXpOnClick()
+    {
+        PlayerXp.EarnXpOnClick(PXp,PlayerXpText, "XP");
+        PlayerXp.LvlUpCheck(PXp, RXp, PLvl, PlayerXpText, PlayerLvlText);
+    }*/
+
+    /*public void EarnXpOnClick()
+    {
+        if (GotRequiredXp(GamePlay.GamePlayInstance.Poland.CReturnLvlTBU()) == true)
+        {
+            PLvl += 1;
+            PlayerLvl.text = "LVL: " + PLvl.ToString();
+        }
     }
     public bool GotRequiredXp(object CName)
     {
-        //CName = this;
-        while ((int.Parse(CName.ToString())) <= PLvl)
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("LVL się zgadza?: Tak");
-            return true;
-        }
+            if ((int.Parse(CName.ToString())) <= PLvl)
+            {
+                Debug.Log("LVL się zgadza?: Tak");
+                return true;
+            }
             Debug.Log("LVL się zgadza?: Nie");
             return false;
+        }
+        return false;
     }
+    */
 }

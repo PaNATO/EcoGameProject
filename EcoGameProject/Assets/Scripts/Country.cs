@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Country 
 {
-    string CName = "";
-    int CLvLTBU = 0;
-    string CCurrency = "";
-    string CIsUnlocked = "";
+    private string CName { get; }
+    private int CLvLTBU { get; }
+    private string CCurrency { get; }
+    private string CIsUnlocked { get; }
 
     public Country(string Name, int LvL, string Currency)
     {
@@ -20,19 +20,12 @@ public class Country
     {
         return CLvLTBU;
     }
-
-
-
-
-    /*// Start is called before the first frame update
-    void Start()
+    public string CReturnCCurency()
     {
-        
+        return CCurrency;
     }
-
-    // Update is called once per frame
-    void Update()
+    public string CReturnCName()
     {
-        
-    }*/
+        return CName;
+    }
 }

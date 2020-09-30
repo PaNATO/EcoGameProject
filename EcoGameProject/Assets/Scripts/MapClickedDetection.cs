@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class MapClickedDetection : MonoBehaviour
 {
-    public static MapClickedDetection mapClickedDetectionInstance;
+    //--------------------------------------------------------------Variables
     public string HitDetection;
+    //--------------------------------------------------------------Class instance
+    public static MapClickedDetection mapClickedDetectionInstance;
+    //--------------------------------------------------------------Sets up an instacne of GameObject and Destroy when we close program
     public void Awake()
     {
         if (mapClickedDetectionInstance == null)
@@ -14,7 +17,7 @@ public class MapClickedDetection : MonoBehaviour
             Destroy(gameObject);
 
     }
-
+    //--------------------------------------------------------------Function Detecting Player click/tap on exact map
     public string Detection()
     {
         if (Input.GetMouseButtonDown(0))
