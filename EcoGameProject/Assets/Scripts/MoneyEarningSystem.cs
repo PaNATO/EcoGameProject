@@ -1,53 +1,60 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class MoneyEarningSystem : MonoBehaviour
 {
     //RegionInfo bg = new RegionInfo("bg-BG");
     //--------------------------------------------------------------SerializeFields
     [SerializeField]
-    Text MoneyText;
+    Text SVMoneyPoland;
     [SerializeField]
-    Text SVMoneyText;
+    Text SVMoneyCzechia;
+    [SerializeField]
+    Text SVMoneySlovakia;
     //--------------------------------------------------------------Variables
-    public int MoneyPLNAmount;
     public GameObject[] CurrencySymbolsAssets;
-    public string[] CurrencySymbols;
     //--------------------------------------------------------------Class Objects
     public Money MoneyPLNClass = new Money();
-    public Currency Currency = new Currency();
     //--------------------------------------------------------------Class instance
-    public static MoneyEarningSystem instance;
+    public static MoneyEarningSystem MoneyEarningInstance;
     //--------------------------------------------------------------Sets up an instacne of GameObject and Destroy when we close program
     public void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (MoneyEarningInstance == null)
+            MoneyEarningInstance = this;
         else
             Destroy(gameObject);
     }
     // Start is called before the first frame update
     public void Start()
     {
-        Currency.CCreateSymbol(0, "pl-PL", CurrencySymbols);
-        Currency.CCreateSymbol(1, "cs-CZ", CurrencySymbols);
-        Currency.CCreateSymbol(2, "sk-SK", CurrencySymbols);
         //CurrencySymbols[0] = bg.CurrencySymbol.ToString();
-        MoneyText.text = "Money:" + MoneyPLNAmount.ToString();
-        SVMoneyText.text = "PLN:" + MoneyPLNAmount.ToString();
     }
 
     // Update is called once per frame
     public void Update()
     {
-        
+        SVMoneyPoland.text = GamePlay.GamePlayInstance.Player.MAmmountPoland.ToString() +" "+ GamePlay.GamePlayInstance.CurrencySymbols[0];
+        SVMoneyCzechia.text = GamePlay.GamePlayInstance.Player.MAmmountCzechia.ToString() +" "+ GamePlay.GamePlayInstance.CurrencySymbols[1];
+        SVMoneySlovakia.text = GamePlay.GamePlayInstance.Player.MAmmountSlovakia.ToString() +" "+ GamePlay.GamePlayInstance.CurrencySymbols[2];
+
     }
     public void EarnPLNOnClick()
     {
-        GamePlay.GamePlayInstance.Player.EarnMoneyOnClick(GamePlay.GamePlayInstance.Poland.CReturnCCurency(), GamePlay.GamePlayInstance.Poland.CReturnCName(), "zł", MoneyText, MapClickedDetection.mapClickedDetectionInstance.Detection());
+        GamePlay.GamePlayInstance.Player.EarnZlOnClick(
+            GamePlay.GamePlayInstance.Poland.CReturnCName(),
+            GamePlay.GamePlayInstance.CurrencySymbols[0],
+            SVMoneyPoland,
+            MapClickedDetection.mapClickedDetectionInstance.Detection(),
+            GamePlay.GamePlayInstance.Poland.CReturnLvlTBU());
+    }
+    public void EarnCZKOnClick()
+    {
+        GamePlay.GamePlayInstance.Player.EarnKoronaOnClick(
+            GamePlay.GamePlayInstance.Czechia.CReturnCName(),
+            GamePlay.GamePlayInstance.CurrencySymbols[1],
+            SVMoneyCzechia,
+            MapClickedDetection.mapClickedDetectionInstance.Detection(),
+            GamePlay.GamePlayInstance.Czechia.CReturnLvlTBU());
     }
 }
