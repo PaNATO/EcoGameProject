@@ -28,6 +28,7 @@ public class MenuUserInterface : MonoBehaviour
     public void MenuGame()
     {
         SceneManager.LoadScene(SceneNames.Menu);
+        SaveLoadSystem.SaveLoadSystemInstance.SaveG();
         //isGameRunning = false;
     }
     public void ExitGame()
@@ -40,14 +41,13 @@ public class MenuUserInterface : MonoBehaviour
         if (!File.Exists(FilePath))
         {
             LoadingGameButton.gameObject.SetActive(false);
-            Vector3 position = ExitButton.transform.position;
-            position.y += 40.74f;
-            ExitButton.transform.position = position;
+            //Vector3 position = ExitButton.transform.position;
+            //position.y += 40.74f;
+            //ExitButton.transform.position = position;
         }
         else
         {
             LoadingGameButton.gameObject.SetActive(true);
-
         }
     }
 }

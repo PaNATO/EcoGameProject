@@ -66,7 +66,7 @@ public class SaveLoadSystem : MonoBehaviour
             JsonUtility.FromJsonOverwrite(jsonString, SavLoaInstance);
             LoadDataBind();
             Debug.Log(jsonString);
-            //MenuUserInterface.isGameLoading = false;
+            MenuUserInterface.isGameLoading = false;
         }
 
     }

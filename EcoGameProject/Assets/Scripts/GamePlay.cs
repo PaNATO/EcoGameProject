@@ -16,6 +16,8 @@ public class GamePlay : MonoBehaviour
     public float CompanyEarningTimerTemp;
     public float CompanyFeeTime = 30f;
     public float CompanyFeeTimerTemp;
+    public float SaveSystemTime;
+    public float SaveSystemTimeTemp;
     public bool CompanyBoughtPoland = false;
     public float FadeSpeed = 20f;
     [SerializeField]
@@ -66,6 +68,7 @@ public class GamePlay : MonoBehaviour
         TimerStart();
         LvlProgressSliderInstance.SetLvlGot(GamePlay.GamePlayInstance.Player.PlayerClickXp);
         PlayerDataBinding();
+        SaveGameTimer();
     }
     IEnumerator GamePlayTimer()
     {
@@ -80,8 +83,6 @@ public class GamePlay : MonoBehaviour
             CompanyEarningTimerTemp = 0f;
             Player.MAmmountPoland += Player.PlayerCompanyEarningPoland;
             Player.PlayerTotalEarningPoland += Player.PlayerCompanyEarningPoland;
-            SaveLoadSystem.SaveLoadSystemInstance.SaveG();
-            Debug.Log("Zpisano gre!");
         }
     }
     public void CompanyFeeTimer()
@@ -92,6 +93,16 @@ public class GamePlay : MonoBehaviour
             CompanyFeeTimerTemp = 0f;
             Player.MAmmountPoland -= Player.PlayerFeePoland;
             GamePlay.GamePlayInstance.InfoBinding("Opłata :" + Player.PlayerFeePoland);
+        }
+    }
+    public void SaveGameTimer()
+    {
+        SaveSystemTimeTemp += Time.deltaTime;
+        if (SaveSystemTimeTemp >= SaveSystemTime)
+        {
+            SaveSystemTimeTemp = 0f;
+            SaveLoadSystem.SaveLoadSystemInstance.SaveG();
+            Debug.Log("Zpisano gre!");
         }
     }
     public void TimerStart()
@@ -119,6 +130,18 @@ public class GamePlay : MonoBehaviour
         {
             InfoText.color = Color.Lerp(InfoText.color, Color.clear, FadeSpeed * Time.deltaTime);
             yield return null;
+        }
+    }
+    void OnApplicationPause(bool PauseStatus)
+    {
+        if(PauseStatus)
+        {
+            Debug.Log("GamePaused");
+            SaveLoadSystem.SaveLoadSystemInstance.SaveG();
+        }else
+        {
+            Debug.Log("Resumed");
+            SaveLoadSystem.SaveLoadSystemInstance.LoadGame();
         }
     }
 
