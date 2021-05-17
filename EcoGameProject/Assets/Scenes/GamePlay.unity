@@ -5274,7 +5274,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 5
     IsPurchased: 0
-  - CompanyName: "Spo\u017Cywczak"
+  - CompanyName: Piekarnia
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 200
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5283,7 +5283,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 10
     IsPurchased: 0
-  - CompanyName: "S\u0142oneczko-przedszkole"
+  - CompanyName: "S\u0142oneczko-Przedszkole"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 400
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5292,7 +5292,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 20
     IsPurchased: 0
-  - CompanyName: PRW-produkcja mebli
+  - CompanyName: PRW-Produkcja Mebli
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 800
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5310,7 +5310,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 80
     IsPurchased: 0
-  - CompanyName: 6
+  - CompanyName: Klapka Sklep
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 3200
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5319,7 +5319,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 160
     IsPurchased: 0
-  - CompanyName: 7
+  - CompanyName: Bud Budowlany Sklep
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 6400
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5328,7 +5328,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 320
     IsPurchased: 0
-  - CompanyName: 8
+  - CompanyName: "Fio\u0142ek Kwiaciarnia"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 12800
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5337,7 +5337,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 640
     IsPurchased: 0
-  - CompanyName: 9
+  - CompanyName: "P\u0105czek Cukiernia"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 25600
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5346,7 +5346,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 1280
     IsPurchased: 0
-  - CompanyName: 10
+  - CompanyName: "Ewa Zak\u0142ad Fryzjerski"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 51200
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5355,7 +5355,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 2560
     IsPurchased: 0
-  - CompanyName: 11
+  - CompanyName: "Ksi\u0119garnia"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 102400
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5364,7 +5364,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 5120
     IsPurchased: 0
-  - CompanyName: 12
+  - CompanyName: "Flex Si\u0142ownia"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 204800
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5373,7 +5373,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 10240
     IsPurchased: 0
-  - CompanyName: 13
+  - CompanyName: Panewka Mechanik
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 409600
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5382,7 +5382,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 20480
     IsPurchased: 0
-  - CompanyName: 14
+  - CompanyName: "Zakr\u0119t Szko\u0142a Nauki Jazdy"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 819200
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5391,7 +5391,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 40960
     IsPurchased: 0
-  - CompanyName: 15
+  - CompanyName: Volt Elektryka
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 1638400
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5400,7 +5400,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 81920
     IsPurchased: 0
-  - CompanyName: 16
+  - CompanyName: 3S Restauracja
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 3276800
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5409,7 +5409,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 163840
     IsPurchased: 0
-  - CompanyName: 17
+  - CompanyName: Technoland Oprogramowanie
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 6553600
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5418,7 +5418,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 327680
     IsPurchased: 0
-  - CompanyName: 18
+  - CompanyName: "Orze\u0142 Stacja Paliw"
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 13107200
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5427,7 +5427,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 655360
     IsPurchased: 0
-  - CompanyName: 19
+  - CompanyName: Kinema Kino
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 26214400
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5436,7 +5436,7 @@ MonoBehaviour:
     CompanyCountry: Poland
     CompanyIncome: 1310720
     IsPurchased: 0
-  - CompanyName: 20
+  - CompanyName: PESLA Automotive
     PriceImage: {fileID: 21300000, guid: 59c6667b7f73bcb48ab3f9b1812cb2a9, type: 3}
     CompanyPrice: 52428800
     TaxImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 3}
@@ -5855,7 +5855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -198.4364, y: -105.53589}
+  m_AnchoredPosition: {x: -198.4364, y: -105.53586}
   m_SizeDelta: {x: 396.8728, y: -105.53595}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1623169439

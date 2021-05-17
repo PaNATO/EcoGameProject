@@ -6,7 +6,7 @@ public class GamePlay : MonoBehaviour
 {
     public string[] CurrencySymbols;
     //public SaveGame SaveGameInstance;
-    public Player Player = new Player(50,1,1,0,0,0,0,1000,0,0,0,0,0,0,0);
+    public Player Player = new Player(50,1,1,0,0,0,0,1,0,0,0,0,0,0,0);
     public Currency Currency = new Currency();
     public static GamePlay GamePlayInstance;
     public LvlProgressSlider LvlProgressSliderInstance;
