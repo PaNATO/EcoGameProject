@@ -75,8 +75,6 @@ public class CountryRelatives : MonoBehaviour
     {
         MoneyEnoughToBuy();
         CountryProgressSlidersInstance.SetCitiesBought(GamePlay.GamePlayInstance.Player.CompaniesBought);
-        if (MenuUserInterface.isGameLoading == true)
-        {
             for(int i = 0; i < Companies.Count; i++)
             {
                 if(SaveLoadSystem.SaveLoadSystemInstance.SavLoaInstance.CompaniesBought[i].isBought == true)
@@ -88,7 +86,6 @@ public class CountryRelatives : MonoBehaviour
 
                 }
             }
-        }
     }
     public void CityStartSelected()
     {
