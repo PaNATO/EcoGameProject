@@ -1,14 +1,17 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GamePlay : MonoBehaviour
 {
+    public List<Country> CountriesList = new List<Country>();
     public string[] CurrencySymbols;
     //public SaveGame SaveGameInstance;
-    public Player Player = new Player(50,1,1,0,0,0,0,1,0,0,0,0,0,0,0);
+    public Player Player = new Player();
     public Currency Currency = new Currency();
     public static GamePlay GamePlayInstance;
+    public static CountryUnlock CountryUnlockInstance;
     public LvlProgressSlider LvlProgressSliderInstance;
     //public GameStats GameStatsInstance;
     [SerializeField]
@@ -19,7 +22,7 @@ public class GamePlay : MonoBehaviour
     public float SaveSystemTime;
     public float SaveSystemTimeTemp;
     public bool CompanyBoughtPoland = false;
-    public float FadeSpeed = 20f;
+    public float FadeSpeed;
     [SerializeField]
     Text ClickEarning;
     [SerializeField]
@@ -40,13 +43,16 @@ public class GamePlay : MonoBehaviour
         Player.CompaniesBought = 0;
     }
 
-    public Country Poland = new Country("Poland", 0, "PLN", "false");
-    public Country Czechia = new Country("Czech", 50, "CZK", "false");
-    public Country Slovakia = new Country("Slovakia", 100, "EUR", "false");
+    public Country Poland = new Country("Poland", 0, "PLN", "true");
+    public Country Czechia = new Country("Czech", 1, "CZK", "false");
+    public Country Slovakia = new Country("Slovakia", 2, "EUR", "false");
 
     // Start is called before the first frame update
     public void Start()
     {
+        CountriesList.Add(Poland);
+        CountriesList.Add(Czechia);
+        CountriesList.Add(Slovakia);
         Currency.CCreateSymbol(0, "pl-PL", CurrencySymbols);
         Currency.CCreateSymbol(1, "cs-CZ", CurrencySymbols);
         Currency.CCreateSymbol(2, "sk-SK", CurrencySymbols);
@@ -61,7 +67,8 @@ public class GamePlay : MonoBehaviour
     public void Update()
     {
         MoneyEarningSystem.MoneyEarningInstance.EarnPLNOnClick();
-        //MoneyEarningSystem.MoneyEarningInstance.EarnCZKOnClick();
+        MoneyEarningSystem.MoneyEarningInstance.EarnCZKOnClick();
+        MoneyEarningSystem.MoneyEarningInstance.EarnSlovEuroOnClick();
         PlayerLevelUpSystem.PlayerLevelUpSystemInstance.EarnXpOnClick();
         PlayerLevelUpSystem.PlayerLevelUpSystemInstance.LvlUpCheck();
         //Debug.Log("DeltaTime: " + Time.time);
@@ -121,8 +128,8 @@ public class GamePlay : MonoBehaviour
     }
     public void InfoBinding(string Message)
     {
+        InfoText.color = new Color(255, 0, 0);
         InfoText.text = Message;
-        InfoText.color = Color.black;
     }
     IEnumerator InfoBidingFadeAway()
     {

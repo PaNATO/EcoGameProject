@@ -15,9 +15,10 @@ public class PlayerLevelUpSystem : MonoBehaviour
     Text PlayerXpText;
     [SerializeField]
     Text RequiredXpText;
-    //public int PLvl;
-    public long PXpAmmount = 1;
-    public long RXp;
+    [SerializeField]
+    Text PrestigeLvlText;
+
+    long PlayerLvlTemp = 2;
 
     public void Awake()
     {
@@ -25,9 +26,6 @@ public class PlayerLevelUpSystem : MonoBehaviour
             PlayerLevelUpSystemInstance = this;
         else
             Destroy(gameObject);
-        GamePlay.GamePlayInstance.Player.PlayerClickXp = 1;
-        GamePlay.GamePlayInstance.Player.PlayerNextLvlXp = 50;
-        GamePlay.GamePlayInstance.Player.PlayerClickXpTemp = 1;
     }
 
     // Start is called before the first frame update
@@ -42,6 +40,8 @@ public class PlayerLevelUpSystem : MonoBehaviour
         PlayerLvlText.text = "LVL: " + GamePlay.GamePlayInstance.Player.PlayerLvl.ToString();
         PlayerXpText.text = GamePlay.GamePlayInstance.Player.PlayerClickXp.ToString();
         RequiredXpText.text = "/" + GamePlay.GamePlayInstance.Player.PlayerNextLvlXp.ToString();
+        PrestigeLvlText.text = "Prestige:" + GamePlay.GamePlayInstance.Player.PlayerPrestige.ToString();
+        PrestigeLvl();
     }
 
     public void EarnXpOnClick()
@@ -58,13 +58,22 @@ public class PlayerLevelUpSystem : MonoBehaviour
         {
             GamePlay.GamePlayInstance.Player.PlayerClickXp -= GamePlay.GamePlayInstance.Player.PlayerNextLvlXp;
             GamePlay.GamePlayInstance.Player.PlayerLvl += 1;
-            GamePlay.GamePlayInstance.Player.PlayerNextLvlXp += Convert.ToInt32(GamePlay.GamePlayInstance.Player.PlayerNextLvlXp * 0.08);
-            GamePlay.GamePlayInstance.Player.PlayerClickXpTemp += Convert.ToInt32((GamePlay.GamePlayInstance.Player.PlayerClickXp * 0.02)+1);
-            PlayerXpText.text = GamePlay.GamePlayInstance.Player.PlayerClickXp.ToString();
-            PlayerLvlText.text = "LVL: " + GamePlay.GamePlayInstance.Player.PlayerLvl.ToString();
-            RequiredXpText.text = "/" + GamePlay.GamePlayInstance.Player.PlayerNextLvlXp.ToString();
+            GamePlay.GamePlayInstance.Player.PlayerNextLvlXp += Mathf.Round(Mathf.Pow(PlayerLvlTemp , 2.2f));
+            //GamePlay.GamePlayInstance.Player.PlayerClickXpTemp += 1;
             GamePlay.GamePlayInstance.LvlProgressSliderInstance.SetLvlRequired(GamePlay.GamePlayInstance.Player.PlayerNextLvlXp);
             GamePlay.GamePlayInstance.InfoBinding("Osiągnięto poziom: " + GamePlay.GamePlayInstance.Player.PlayerLvl);
+            PlayerLvlTemp = GamePlay.GamePlayInstance.Player.PlayerLvl + 1;
+        }
+    }
+    public void PrestigeLvl()
+    {
+        if (GamePlay.GamePlayInstance.Player.PlayerLvl == 200)
+        {
+            GamePlay.GamePlayInstance.Player.PlayerNextLvlXpStart += 25;
+            GamePlay.GamePlayInstance.Player.PlayerPrestige += 1;
+            GamePlay.GamePlayInstance.Player.PlayerLvl = 1;
+            GamePlay.GamePlayInstance.Player.PlayerClickXp = 0;
+            GamePlay.GamePlayInstance.Player.PlayerNextLvlXp = GamePlay.GamePlayInstance.Player.PlayerNextLvlXpStart;
         }
     }
     /*public void EarnXpOnClick()

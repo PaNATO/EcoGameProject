@@ -46,7 +46,7 @@ public class MoneyEarningSystem : MonoBehaviour
             GamePlay.GamePlayInstance.CurrencySymbols[0],
             SVMoneyPoland,
             MapClickedDetection.mapClickedDetectionInstance.Detection(),
-            GamePlay.GamePlayInstance.Poland.CReturnLvlTBU());
+            GamePlay.GamePlayInstance.Poland.CReturnPresTBU());
     }
     public void EarnCZKOnClick()
     {
@@ -55,6 +55,15 @@ public class MoneyEarningSystem : MonoBehaviour
             GamePlay.GamePlayInstance.CurrencySymbols[1],
             SVMoneyCzechia,
             MapClickedDetection.mapClickedDetectionInstance.Detection(),
-            GamePlay.GamePlayInstance.Czechia.CReturnLvlTBU());
+            GamePlay.GamePlayInstance.Czechia.CReturnPresTBU());
+    }
+    public void EarnSlovEuroOnClick()
+    {
+        GamePlay.GamePlayInstance.Player.EarnSlovEuroOnClick(
+            GamePlay.GamePlayInstance.Slovakia.CReturnCName(),
+            GamePlay.GamePlayInstance.CurrencySymbols[2],
+            SVMoneySlovakia,
+            MapClickedDetection.mapClickedDetectionInstance.Detection(),
+            GamePlay.GamePlayInstance.Slovakia.CReturnPresTBU());
     }
 }

@@ -16,10 +16,10 @@ public class SaveLoadSystem : MonoBehaviour
     public class SavLoa 
     {
         [SerializeField]
-        public long PlayerMAmmountPolandSavLoad,
-        PlayerNextLvlXpSavLoad,
+        public float PlayerNextLvlXpSavLoad,
         PlayerClickXpSavLoad,
-        PlayerClickXpTempSavLoad,
+        PlayerClickXpTempSavLoad;
+        public long PlayerMAmmountPolandSavLoad,
         PlayerLvlSavLoad,
         PlayerCompanyEarningPolandSavLoad,
         PlayerFeePolandSavLoad,
