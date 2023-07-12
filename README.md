@@ -1,6 +1,7 @@
 # EcoGameProject
 ## Description
 #### Simple game for my University degree. Eco Game is about clicking and gaining money in given country currency. Player can use money to buy companies in different cities also need to pay taxes for every company owned (business maintenance tax).
+#### Game created in Unity 2D with C# language written in Visual studio. Graphics created in GIMP, style pixel art.
 ## Game mechanics
 + Map clicking
 + Buying companies
