@@ -53,9 +53,9 @@ public class GamePlay : MonoBehaviour
         CountriesList.Add(Poland);
         CountriesList.Add(Czechia);
         CountriesList.Add(Slovakia);
-        Currency.CCreateSymbol(0, "pl-PL", CurrencySymbols);
-        Currency.CCreateSymbol(1, "cs-CZ", CurrencySymbols);
-        Currency.CCreateSymbol(2, "sk-SK", CurrencySymbols);
+        //Currency.CCreateSymbol(0, "pl-PL", CurrencySymbols);
+        //Currency.CCreateSymbol(1, "cs-CZ", CurrencySymbols);
+        //Currency.CCreateSymbol(2, "sk-SK", CurrencySymbols);
         StartCoroutine(GamePlayTimer());
         StartCoroutine(InfoBidingFadeAway());
         PlayerDataBinding();

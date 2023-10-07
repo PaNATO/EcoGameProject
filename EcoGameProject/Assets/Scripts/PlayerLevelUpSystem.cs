@@ -9,17 +9,8 @@ using System;
 public class PlayerLevelUpSystem : MonoBehaviour
 {
     public static PlayerLevelUpSystem PlayerLevelUpSystemInstance;
-    [SerializeField]
-    Text PlayerLvlText;
-    [SerializeField]
-    Text PlayerXpText;
-    [SerializeField]
-    Text RequiredXpText;
-    [SerializeField]
-    Text PrestigeLvlText;
-
-    long PlayerLvlTemp = 2;
-
+    public LvlProgressSlider LvlProgressSliderInstance;
+    public long PlayerLvlTemp;
     public void Awake()
     {
         if (PlayerLevelUpSystemInstance == null)
@@ -31,49 +22,59 @@ public class PlayerLevelUpSystem : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-
+        LvlProgressSliderInstance.SetLvlRequired(PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXp);
     }
 
     // Update is called once per frame
     public void Update()
     {
-        PlayerLvlText.text = "LVL: " + GamePlay.GamePlayInstance.Player.PlayerLvl.ToString();
-        PlayerXpText.text = GamePlay.GamePlayInstance.Player.PlayerClickXp.ToString();
-        RequiredXpText.text = "/" + GamePlay.GamePlayInstance.Player.PlayerNextLvlXp.ToString();
-        PrestigeLvlText.text = "Prestige:" + GamePlay.GamePlayInstance.Player.PlayerPrestige.ToString();
-        PrestigeLvl();
+        //EarnXpOnClick();
+        //PrestigeLvl();
+        LvlProgressSliderInstance.SetLvlGot(PlayerNew.PlayerNewInstance.Players[0].PlayerClickXp);
+        //LvlUpCheck();
     }
 
     public void EarnXpOnClick()
     {
-        if (MapClickedDetection.mapClickedDetectionInstance.Detection() != "" && Input.GetMouseButtonDown(0))
+        foreach(var country in Countries.CountriesInstance.CountryList)
         {
-            GamePlay.GamePlayInstance.Player.PlayerClickXp += GamePlay.GamePlayInstance.Player.PlayerClickXpTemp;
-            PlayerXpText.text = GamePlay.GamePlayInstance.Player.PlayerClickXp.ToString();
+            if (country.CountryPresTBU <= PlayerNew.PlayerNewInstance.Players[0].PlayerPrestige
+                && country.CountryIsUnlocked
+                && Input.GetMouseButtonDown(0)
+                && Countries.CountriesInstance.HitDetection == country.CountryName)
+            {
+                PlayerNew.PlayerNewInstance.Players[0].PlayerClickXp += PlayerNew.PlayerNewInstance.Players[0].PlayerClickXpTemp;
+                GameplayNewScript.GameplayNewScriptInstance.PlayerXpText.text = PlayerNew.PlayerNewInstance.Players[0].PlayerClickXp.ToString();
+            }
+            else
+            {
+                continue;
+            }
         }
+
     }
     public void LvlUpCheck()
     {
-        if (GamePlay.GamePlayInstance.Player.PlayerClickXp >= GamePlay.GamePlayInstance.Player.PlayerNextLvlXp)
+        if (PlayerNew.PlayerNewInstance.Players[0].PlayerClickXp >= PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXp)
         {
-            GamePlay.GamePlayInstance.Player.PlayerClickXp -= GamePlay.GamePlayInstance.Player.PlayerNextLvlXp;
-            GamePlay.GamePlayInstance.Player.PlayerLvl += 1;
-            GamePlay.GamePlayInstance.Player.PlayerNextLvlXp += Mathf.Round(Mathf.Pow(PlayerLvlTemp , 2.2f));
-            //GamePlay.GamePlayInstance.Player.PlayerClickXpTemp += 1;
-            GamePlay.GamePlayInstance.LvlProgressSliderInstance.SetLvlRequired(GamePlay.GamePlayInstance.Player.PlayerNextLvlXp);
-            GamePlay.GamePlayInstance.InfoBinding("Osiągnięto poziom: " + GamePlay.GamePlayInstance.Player.PlayerLvl);
-            PlayerLvlTemp = GamePlay.GamePlayInstance.Player.PlayerLvl + 1;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerClickXp -= PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXp;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerLvl += 1;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXp += Mathf.Round(Mathf.Pow(PlayerLvlTemp , 2.2f));
+            PlayerNew.PlayerNewInstance.Players[0].PlayerClickXpTemp += 1;
+            LvlProgressSliderInstance.SetLvlRequired(PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXp);
+            //GamePlayInstance.InfoBinding("Osiągnięto poziom: " + PlayerNew.PlayerNewInstance.Players[0].PlayerLvl);
+            PlayerLvlTemp = PlayerNew.PlayerNewInstance.Players[0].PlayerLvl + 1;
         }
     }
     public void PrestigeLvl()
     {
-        if (GamePlay.GamePlayInstance.Player.PlayerLvl == 200)
+        if (PlayerNew.PlayerNewInstance.Players[0].PlayerLvl == 200)
         {
-            GamePlay.GamePlayInstance.Player.PlayerNextLvlXpStart += 25;
-            GamePlay.GamePlayInstance.Player.PlayerPrestige += 1;
-            GamePlay.GamePlayInstance.Player.PlayerLvl = 1;
-            GamePlay.GamePlayInstance.Player.PlayerClickXp = 0;
-            GamePlay.GamePlayInstance.Player.PlayerNextLvlXp = GamePlay.GamePlayInstance.Player.PlayerNextLvlXpStart;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXpStart += 25;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerPrestige += 1;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerLvl = 1;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerClickXp = 0;
+            PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXp = PlayerNew.PlayerNewInstance.Players[0].PlayerNextLvlXpStart;
         }
     }
     /*public void EarnXpOnClick()

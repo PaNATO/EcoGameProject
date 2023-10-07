@@ -13,25 +13,20 @@ public class CountryUnlock : MonoBehaviour
         else
             Destroy(gameObject);
     }
-    [SerializeField] Transform CzechiaMap;
-    [SerializeField] Transform SlovakiaMap;
-    [SerializeField] GameObject CzechiaLocker;
-    [SerializeField] GameObject SlovakiaLocker;
-    int PlayerPresTemp;
 
     public void CountryUnlockFunc()
     {
-        foreach(var country in GamePlay.GamePlayInstance.CountriesList)
-        {
-            PlayerPresTemp = Convert.ToInt32(country.CReturnPresTBU());
-            
-            if(GamePlay.GamePlayInstance.Player.PlayerPrestige > Convert.ToInt32(country.CReturnPresTBU()))
+        foreach(var country in Countries.CountriesInstance.CountryList)
+        {   
+            if(PlayerNew.PlayerNewInstance.Players[0].PlayerPrestige >= country.CountryPresTBU && PlayerNew.PlayerNewInstance.Players[0].PlayerPrestige > 0)
             {
-                Debug.Log("PlayerTemp: " + Convert.ToInt32(country.CReturnPresTBU()));
-                CzechiaMap.gameObject.SetActive(true);
-                CzechiaLocker.SetActive(false);
-                SlovakiaMap.gameObject.SetActive(true);
-                SlovakiaLocker.SetActive(false);
+                country.CountryIsUnlocked = true;
+                country.Locker.SetActive(false);
+                country.CountryMap.SetActive(true);
+                //CzechiaMap.gameObject.SetActive(true);
+                //CzechiaLocker.SetActive(false);
+                //SlovakiaMap.gameObject.SetActive(true);
+                //SlovakiaLocker.SetActive(false);
             }
         }
         /*switch(GamePlay.GamePlayInstance.Player.PlayerPrestige)
@@ -45,12 +40,6 @@ public class CountryUnlock : MonoBehaviour
                 SlovakiaLocker.SetActive(false);
                 break;
         }*/
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

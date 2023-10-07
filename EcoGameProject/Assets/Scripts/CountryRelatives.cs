@@ -15,17 +15,7 @@ public class CountryRelatives : MonoBehaviour
             Destroy(gameObject);
     }
     [System.Serializable]
-    class Cities
-    {
-        public string Name;
-        public Text City1;
-        public Text City2;
-        public Text City3;
-        public Text City4;
-    }
-    [SerializeField] List<Cities> CountryCities;
-    [System.Serializable]
-    class Company
+    public class Company
     {
         public string CompanyName;
         public Sprite PriceImage;
@@ -37,7 +27,7 @@ public class CountryRelatives : MonoBehaviour
         public long CompanyIncome;
         public bool IsPurchased = true;
     }
-    [SerializeField] List<Company> Companies;
+    public List<Company> Companies;
     GameObject CompanyPrefab;
     GameObject CompanyInstance;
     [SerializeField] Transform CompanyScrollView;
@@ -47,8 +37,8 @@ public class CountryRelatives : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        GamePlay.GamePlayInstance.Player.CompaniesAmmount = Companies.Count;
-        CountryProgressSlidersInstance.SetCitiesAmmount(GamePlay.GamePlayInstance.Player.CompaniesAmmount);
+        //GamePlay.GamePlayInstance.Player.CompaniesAmmount = Companies.Count;
+        CountryProgressSlidersInstance.SetCitiesAmmount(Companies.Count);
         CompanyPrefab = CompanyScrollView.GetChild(0).gameObject;
         int len1 = Companies.Count;
         for (int i = 0; i < len1; i++)
@@ -125,7 +115,6 @@ public class CountryRelatives : MonoBehaviour
                     CompanyScrollView.GetChild(i).gameObject.SetActive(true);
                 }
             }
-            GamePlay.GamePlayInstance.PlayerDataBinding();
         }
     }
     void MoneyEnoughToBuy()
@@ -134,10 +123,13 @@ public class CountryRelatives : MonoBehaviour
         {
             long CompanyPriceVar = Companies[i].CompanyPrice;
             bool CompanyBought = Companies[i].IsPurchased;
-            if (GamePlay.GamePlayInstance.Player.MAmmountPoland >= CompanyPriceVar && CompanyBought == false)
+            foreach(var country in Countries.CountriesInstance.CountryList)
             {
-                BoughtCompanyButton = CompanyScrollView.GetChild(i).GetChild(8).GetComponent<Button>();
-                BoughtCompanyButton.interactable = true;
+                if (country.CountryMoneyAmmount >= CompanyPriceVar && CompanyBought == false)
+                {
+                    BoughtCompanyButton = CompanyScrollView.GetChild(i).GetChild(8).GetComponent<Button>();
+                    BoughtCompanyButton.interactable = true;
+                }
             }
         }
     }
@@ -154,7 +146,24 @@ public class CountryRelatives : MonoBehaviour
         GamePlay.GamePlayInstance.InfoBinding("Kupiono " + CompanyName);
         Companies[CompanyIndex].IsPurchased = true;
         BoughtCompanyButton = CompanyScrollView.GetChild(CompanyIndex).GetChild(8).GetComponent<Button>();
-        if (CompanyCountry == GamePlay.GamePlayInstance.Poland.CReturnCName())
+        foreach(var country in Countries.CountriesInstance.CountryList)
+        {
+            if(country.CountryMoneyAmmount >= CompanyPriceVar)
+            {
+                SaveLoadSystem.SaveLoadSystemInstance.SavLoaInstance.CompaniesBought[CompanyIndex].isBought = true;
+                country.CountryMoneyAmmount -= CompanyPriceVar;
+                country.CompanyEarning += CompanyIncomeVar;
+                country.CompanyFees += CompanyFeeVar;
+                //GameplayNewScript.GameplayNewScriptInstance.PlayerDataBinding();
+                PlayerNew.PlayerNewInstance.Players[0].CompaniesBought += 1;
+                CompanyScrollView.GetChild(CompanyIndex).GetChild(8).GetComponent<Button>().interactable = false;
+                BoughtCompanyButton.transform.GetChild(0).GetComponent<Text>().text = "Kupione";
+            }else
+            {
+                Debug.Log("Za mało funduszy!");
+            }
+        }
+        /*if (CompanyCountry == GamePlay.GamePlayInstance.Poland.CReturnCName())
         {
             if (GamePlay.GamePlayInstance.Player.MAmmountPoland >= CompanyPriceVar)
             {
@@ -175,7 +184,7 @@ public class CountryRelatives : MonoBehaviour
                 Debug.Log("Za mało funduszy!");
                 GamePlay.GamePlayInstance.InfoBinding("Za mało funduszy!");
             }
-        }
+        }*/
     }
 
     //Stats Section
